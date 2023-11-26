@@ -42,10 +42,17 @@ const createUser = async (req, res) => {
   }
 };
 
-const updateUser = (req, res) => {
-  res.status(200).json({
-    message: "user is update",
-  });
+const updateUser = async (req, res) => {
+  try {
+    const user = await User.findOne({ id: req.params.id });
+    user.name = req.body.name;
+    user.age = Number(req.body.age);
+
+    await user.save();
+    res.status(201).json(user);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
 };
 
 const deleteUser = async (req, res) => {
