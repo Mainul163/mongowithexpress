@@ -13,6 +13,10 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/views/index.html");
 });
 
+app.get("/file", (req, res) => {
+  res.sendFile(__dirname + "/views/file.html");
+});
+
 app.use("/api/users", userRouter);
 
 // **** router error *****
