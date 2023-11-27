@@ -3,6 +3,7 @@ const cors = require("cors");
 require("./config/db");
 const bodyParser = require("body-parser");
 const userRouter = require("./routes/user.route");
+const fileRouter = require("./routes/fileUpload.route");
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -18,7 +19,7 @@ app.get("/file", (req, res) => {
 });
 
 app.use("/api/users", userRouter);
-
+app.use("/register", fileRouter);
 // **** router error *****
 app.use((req, res, next) => {
   res.status(404).json({
